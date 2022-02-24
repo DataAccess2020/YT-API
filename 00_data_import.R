@@ -6,5 +6,14 @@ yt_oauth(id, key, token = '')
 salvini_id <- "UCDjM54fZ-cD7F8uom767OhA"
 #Scraped from source, line 21. No way to obtain it from API
 
-salvini <- list_channel_videos(channel_id = salvini_id)
-#I have the id for the 50 newest videos + date and hour of publication
+salvini <- list_channel_videos(channel_id = salvini_id, max_results = 51)
+#I have the id for every video + date and hour of publication. 4509 videos
+#I typed 51 because anything >50 gives you every video on channel
+
+
+library(rio)
+export(salvini, file = "salvini.csv")
+
+id <- data.frame(salvini_id)
+
+export(id, "id.csv")
