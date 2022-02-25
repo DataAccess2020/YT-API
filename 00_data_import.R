@@ -17,3 +17,18 @@ export(salvini, file = "salvini.csv")
 id <- data.frame(salvini_id)
 
 export(id, "id.csv")
+
+
+#Since Tuber's get_captions doesn't work anymore, I'm gonna be using Youtubecaption's get_captions
+#But it requires URLs, which I haven't
+
+salvini <- import("salvini.csv")
+
+sal <- salvini
+
+
+url <- str_c("https://www.youtube.com/watch?v=", sal$video_id[1:4509])
+
+salv_data <- data.frame(sal$etag, sal$id, sal$video_id, url, sal$date)
+
+export(salv_data, "salvini_youtube.csv")
