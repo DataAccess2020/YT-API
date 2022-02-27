@@ -29,6 +29,6 @@ sal <- salvini
 
 url <- str_c("https://www.youtube.com/watch?v=", sal$video_id[1:4509])
 
-salv_data <- data.frame(sal$etag, sal$id, sal$video_id, url, sal$date)
+salv_data <- data.frame(sal[2:5], url)
 
 export(salv_data, "salvini_youtube.csv")
