@@ -16,6 +16,3 @@ library(rio)
 
 #In 00_data_import I created a dataset called salvini_youtube because I discovered that I must use
 #Youtubecaptions' functions, which need URLs
-
-sal <- import("salvini_youtube.csv")
-
