@@ -32,3 +32,121 @@ url <- str_c("https://www.youtube.com/watch?v=", sal$video_id[1:4509])
 salv_data <- data.frame(sal[2:5], url)
 
 export(salv_data, "salvini_youtube.csv")
+
+
+
+
+#Huge download of captions of every video
+
+sal <- import("salvini_youtube.csv")
+
+
+
+
+library(youtubecaption)
+
+speech <- vector()
+v <- vector()
+
+for (i in sal$url[1:500]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.5)
+}
+
+
+for (i in sal$url[501:1000]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.8)
+}
+
+
+for (i in sal$url[1001:1500]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.4)
+}
+
+
+for (i in sal$url[1501:2000]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.4)
+}
+
+
+for (i in sal$url[2001:2500]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.4)
+}
+
+
+
+for (i in sal$url[2501:3000]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.4)
+}
+
+
+
+for (i in sal$url[3001:3500]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.4)
+}
+
+
+for (i in sal$url[3501:4000]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.4)
+}
+
+
+
+for (i in sal$url[4001:4509]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  speech <- append(speech, v)
+  Sys.sleep(0.4)
+}
+
+save(... = speech, file = "speech1.Rdata")
