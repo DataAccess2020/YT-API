@@ -4,7 +4,7 @@ yt_oauth(id, key, token = '')
 #Start with Salvini because his YT account is up to date and tidy. He has many high quality video
 
 salvini_id <- "UCDjM54fZ-cD7F8uom767OhA"
-#Scraped from source, line 21. No way to obtain it from API
+#Scraped from source, line 21
 
 salvini <- list_channel_videos(channel_id = salvini_id, max_results = 51)
 #I have the id for every video + date and hour of publication. 4509 videos
