@@ -3,7 +3,7 @@ yt_oauth(id, key, token = '')
 
 #Start with Salvini because his YT account is up to date and tidy. He has many high quality video
 
-salvini_id <- "UCDjM54fZ-cD7F8uom767OhA"
+salvini_id
 #Scraped from source, line 21
 
 salvini <- list_channel_videos(channel_id = salvini_id, max_results = 51)
@@ -14,9 +14,9 @@ salvini <- list_channel_videos(channel_id = salvini_id, max_results = 51)
 library(rio)
 export(salvini, file = "salvini.csv")
 
-id <- data.frame(salvini_id)
+s_id <- data.frame(salvini_id)
 
-export(id, "id.csv")
+export(s_id, "id.csv")
 
 
 #Since Tuber's get_captions doesn't work anymore, I'm gonna be using Youtubecaption's get_captions
