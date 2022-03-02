@@ -59,3 +59,5 @@ salvid$text[duplicated(salvid$text)] <- NA
 #Everytime the video didn't have subs, the text for the previous got duplicated! I removed the duplicates
 
 #My dataset is ready!
+
+export(salvid, file = "salvini_dataset.csv")
