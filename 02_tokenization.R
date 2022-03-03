@@ -19,6 +19,8 @@ for (i in seq_along(1:4509)) {
 }
 #Tokenizing words, it may be useful later?
 
+#prova <- Reduce(intersect, data$token[]), could be useful if I split the list in
+#significant periods of time
 
 
 
@@ -47,7 +49,7 @@ wordcloud(text_clean, scale = c(2, 1), min.freq = 200, colors = rainbow(30))
 
 
 #Second tentative
-install.packages("tidytext")
+#install.packages("tidytext")
 library(tidytext)
 
 df <- data_frame(Text = data$text)
