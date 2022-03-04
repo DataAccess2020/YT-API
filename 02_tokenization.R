@@ -19,5 +19,26 @@ for (i in seq_along(1:4509)) {
 }
 
 
-library(TextWiller)
 
+
+#install.packages("tidytext")
+library(tidytext)
+
+df <- data_frame(Text = data$text)
+
+words <- df %>% 
+  unnest_tokens(output = word, input = Text)
+
+stop <- get_stopwords(language = "it")
+
+words <- words %>%
+  anti_join(stop)
+
+wordcounts <- words %>% count(word, sort = TRUE)
+
+wordcounts <- wordcounts %>%
+  anti_join(stop)
+
+
+#library(TextWiller)
+#prova <- TextWiller::sentiment(wordcounts$word). I don't like this approach
