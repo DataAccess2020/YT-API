@@ -1,7 +1,7 @@
 # Youtube communication of Italian political parties
 
 
-*If we analysed the verbal communication in the YouTube videos published by the major Italian political parties, what differences would we find?
+*If we analysed the verbal communication in videos published by official YouTube accounts for the major Italian political parties, what differences would we find?
 I used the APIs **YouTube Data API v3** and **Watson Natural Language Understanding** to find out.*
 
 
