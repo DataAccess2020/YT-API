@@ -2,7 +2,9 @@
 
 *If we analysed the verbal communication in videos published by official YouTube accounts for the major Italian political parties, what differences would we find?
 I used the APIs **YouTube Data API v3** and **Watson Natural Language Understanding** to find out.*
+<br>
 
+<br>
 <table>
 <tr>
 <td>
@@ -15,8 +17,10 @@ I used the APIs **YouTube Data API v3** and **Watson Natural Language Understand
 
 ### 🔹Data
 
-I created my datasets using the _YouTube Data API v3_, along with the R Packages _Tuber_ and _youtubecaptions_.
-The Tuber package allowed me to manage the API directly from R; I was able to scrape account details for each political party and to obtain metadata for each video published on their accounts; I mostly relied on the metadata containing publishing date and video ID.
+I created my datasets using the Google Developers' [_YouTube Data API v3_](https://developers.google.com/youtube/v3/docs/), along with the R Packages _Tuber_ and _youtubecaptions_. <br>
+The Tuber package allowed me to manage the API directly from R: the function `list_channel_videos` provided me with metadata for each video published on the YouTube channels, 
+  
+I mostly relied on the metadata containing `publishing date` and `video ID`.
 
 The youtubecaptions package allowed me to obtain captions for each video using the URLs, which I produced using the video IDs previously scraped.
 
