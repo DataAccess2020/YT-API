@@ -36,7 +36,12 @@ output:
 
 
 # Methods
-I used the R package *Tuber* to collect YouTube videos. *Tuber* consists of a number of functions useful to extract data from the YouTube platform via the YouTube Data API v3. I conducted the queries using each political party's ID in the `list_channel_videos` function, which resulted in obtaining metadata for each video published on every channel. The tool provided metadata for 20000 videos from Movimento 5 Stelle's channel; 9548 videos from Lega Salvini Premier's channel; 1000 videos from Partito Democratico's channel; 1000 videos from Fratelli d'Italia's channel; 67 videos from Forza Italia's channel. Since *Tuber*'s function to extract subtitle texts from the YouTube videos using IDs has been recently disable, I used the R package *youtubecaptions* instead.
+I used the R package *Tuber* to collect YouTube videos. *Tuber* consists of a number of functions useful to extract data from the YouTube platform via the YouTube Data API v3. I conducted the queries using each political party's ID in the `list_channel_videos` function, which resulted in obtaining metadata for each video published on every channel. The tool provided metadata for 20000 videos from [Movimento 5 Stelle](https://www.youtube.com/user/M5SParlamento)'s channel; 9548 videos from [Lega Salvini Premier](https://www.youtube.com/c/LegaSalviniPremier)'s channel; 1955 videos from [Partito Democratico](https://www.youtube.com/c/PartitoDemocratico)'s channel; 5555 videos from [Fratelli d'Italia](https://www.youtube.com/c/FratellidItaliaAN)'s channel; 67 videos from [Forza Italia](https://www.youtube.com/c/forzaitalia)'s channel.
+
+Since *Tuber*'s function to extract subtitles from YouTube videos has been recently disable, I used the R package *youtubecaptions* instead. The function *get_captions* gives back a number of string characters for each video, which correspond to the unique captions appearing on the screen as the video plays. I then joined them in single string characters, obtaining whole transciptions for each video of the channels.
+
+After preparing the data in order to have clean, tidy datasets for each political party's channel, I finally came to the text analysis.
+
 
 
 
