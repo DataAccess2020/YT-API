@@ -1,0 +1,50 @@
+---
+title: "Youtube communication of Italian political parties"
+author: "Maria Ascolese"
+date: "March 11, 2022"
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    number_sections: true
+    highlight: tango
+---
+
+```{r setup, eval= FALSE, include=TRUE}
+
+```
+
+<br> 
+
+# Introduction
+
+
+
+# Literature review
+
+
+
+# Hypotheses
+
+*H1* Parties with common ideologies also show common keywords, emotional words and syntax.
+
+*H2* Each party's keywords, emotional words and syntax change dramatically over time.
+
+
+# Data
+
+
+
+# Methods
+
+
+
+# Results
+
+
+
+# Conclusion
+
+
+
+# References
