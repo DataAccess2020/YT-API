@@ -36,7 +36,8 @@ output:
 
 
 # Methods
-I used the R package *Tuber* to collect YouTube videos. *Tuber* consists of a number of functions useful to extract data from the YouTube platform via the YouTube Data API v3. I conducted the queries using each political party's ID, which I scraped from the source page: I used the `list_channel_videos` function, which resulted in five dataframes, one for each political party channel, each containing metadata on every video ever published.
+I used the R package *Tuber* to collect YouTube videos. *Tuber* consists of a number of functions useful to extract data from the YouTube platform via the YouTube Data API v3. I conducted the queries using each political party's ID in the `list_channel_videos` function, which resulted in obtaining metadata for each video published on every channel. The tool provided metadata for 20000 videos from Movimento 5 Stelle's channel; 9548 videos from Lega Salvini Premier's channel; 1000 videos from Partito Democratico's channel; 1000 videos from Fratelli d'Italia's channel; 67 videos from Forza Italia's channel. Since *Tuber*'s function to extract subtitle texts from the YouTube videos using IDs has been recently disable, I used the R package *youtubecaptions* instead.
+
 
 
 # Results
