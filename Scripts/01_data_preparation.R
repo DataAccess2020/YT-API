@@ -1,6 +1,6 @@
 library(rio)
 
-pd_channel <- read_csv("Content Details Data/pd_channel.csv")
+pd_channel <- import("Content Details Data/pd_channel.csv")
 
 library(dplyr)
 pd_channel <- pd_channel %>%
