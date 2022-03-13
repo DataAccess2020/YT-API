@@ -25,7 +25,7 @@ The `youtubecaptions` package allowed me to obtain captions for each video using
 
 ### 🔹Methods
 
-To look into my hypotheses, I will be using the Watson Natural Language Understanding API.
+
 
 
 ### 🔹Expected results
