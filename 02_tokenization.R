@@ -20,4 +20,11 @@ wordcounts <- words %>% count(word, sort = TRUE)
 wordcounts <- wordcounts %>%
   anti_join(stop)
 
+library(stringr)
+error <- str_extract(wordcounts$word, ".*ã")
+
+error <- as.data.frame(error)
+
+wordcounts <- wordcounts %>%
+  anti_join(error)
 
