@@ -154,3 +154,24 @@ for (i in fi_data$fi_url[1:60]) {
 
 
 save(... = fi_captions, file = "fi_captions.Rdata")
+
+
+library(rio)
+library(youtubecaption)
+
+fdi_data <- import("Metadata/fdi_data.csv")
+
+fdi_captions <- vector()
+v <- vector()
+
+for (i in fdi_data$fdi_url[1:5524]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  fdi_captions <- append(fdi_captions, v)
+}
+
+
+save(... = fdi_captions, file = "fdi_captions.Rdata")
