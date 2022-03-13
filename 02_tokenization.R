@@ -1,9 +1,9 @@
 library(rio)
-data <- import("salvini_dataset.csv")
+pd_dataset <- import("Party Datasets/pd_dataset.csv")
 
 
 library(tidyverse)
-data <- add_column(data, token = NA)
+pd_dataset <- add_column(pd_dataset, token = NA)
 
 #install.packages("tokenizers")
 library(tokenizers)
@@ -13,8 +13,8 @@ library(tokenizers)
 #install.packages("stopwords")
 library(stopwords)
 
-for (i in seq_along(1:4509)) {
-  data$token[i] <- tokenize_words(data$text[i], stopwords = stopwords("it"))
+for (i in seq_along(1:1955)) {
+  pd_dataset$token[i] <- tokenize_words(pd_dataset$text[i], stopwords = stopwords("it"))
   
 }
 
@@ -24,9 +24,9 @@ for (i in seq_along(1:4509)) {
 #install.packages("tidytext")
 library(tidytext)
 
-df <- data_frame(Text = data$text)
+text <- data_frame(Text = pd_dataset$text)
 
-words <- df %>% 
+words <- text %>% 
   unnest_tokens(output = word, input = Text)
 
 stop <- get_stopwords(language = "it")
@@ -37,8 +37,10 @@ words <- words %>%
 wordcounts <- words %>% count(word, sort = TRUE)
 
 wordcounts <- wordcounts %>%
-  anti_join(stop)
+  anti_join(itastopwords)
 
 
-#library(TextWiller)
-#prova <- TextWiller::sentiment(wordcounts$word). I don't like this approach
+library(TextWiller)
+prova <- sentiment(wordcounts$word[1])
+
+
