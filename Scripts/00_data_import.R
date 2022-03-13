@@ -133,3 +133,24 @@ for (i in lg_data$lg_url[1:5000]) {
 
 
 save(... = lg_captions, file = "lg_captions.Rdata")
+
+
+
+library(youtubecaption)
+
+fi_data <- import("Metadata/fi_data.csv")
+
+fi_captions <- vector()
+v <- vector()
+
+for (i in fi_data$fi_url[1:60]) {
+  tryCatch({
+    v <- get_caption(i, "it")
+  }, error = function(e){})
+  
+  print(i)
+  fi_captions <- append(fi_captions, v)
+}
+
+
+save(... = fi_captions, file = "fi_captions.Rdata")
