@@ -1,6 +1,6 @@
 library(rio)
 
-pd_channel <- import("Content Details Data/pd_channel.csv")
+pd_channel <- import("Content Details Data/pd_channel.csv")  #PD's channel data
 
 library(dplyr)
 pd_channel <- pd_channel %>%
@@ -53,3 +53,47 @@ pd_data$text[duplicated(pd_data$text)] <- NA
 #My dataset is ready!
 
 export(pd_data, file = "pd_dataset.csv")
+
+
+
+
+
+#Now I can do the same for the other parties
+library(rio)
+
+fi_channel <- import("Content Details Data/fi_channel.csv")
+
+library(dplyr)
+fi_channel <- fi_channel %>%
+  rename("date" = "contentDetails.videoPublishedAt") %>%
+  rename("video_id" = "contentDetails.videoId")
+
+fi_captions <- import("Captions/fi_captions.Rdata")
+
+divider <- function(x, n) split(x, cut(seq_along(x), n, labels = F))
+
+fi_captions <- divider(fi_captions, 60)
+
+
+library(stringr)
+
+for (i in 1:60) {
+  fi_captions[[i]][["text"]] <- str_c(fi_captions[[i]][["text"]], collapse = " ")
+}
+
+fi_data <- matrix(nrow = 60, ncol = 3, dimnames = list(c(1:60), c("video_id", "date", "text")))
+
+fi_data[, 1] <- fi_channel$video_id
+
+fi_channel$date <- as.character.Date(fi_channel$date)
+fi_data[, 2] <- fi_channel$date
+
+for(i in seq_along(1:60)){
+  fi_data[i, 3] <- fi_captions[[i]][["text"]]
+}
+
+fi_data <- as.data.frame(fi_data)
+
+fi_data$text[duplicated(fi_data$text)] <- NA
+
+export(fi_data, file = "fi_dataset.csv")
