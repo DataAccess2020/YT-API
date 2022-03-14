@@ -8,6 +8,13 @@ pd_dataset <- import("Party Datasets/pd_dataset.csv")
 library(tidytext)
 library(tidyverse)
 
+library(TextWiller)
+text <- removeStopwords(pd_dataset$text)
+
+
+
+
+
 text <- data_frame(Text = pd_dataset$text)
 
 words <- text %>% 
