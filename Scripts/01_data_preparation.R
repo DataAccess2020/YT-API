@@ -1,3 +1,4 @@
+#Partito Democratico dataset
 library(rio)
 
 pd_channel <- import("Content Details Data/pd_channel.csv")  #PD's channel data
@@ -59,6 +60,7 @@ export(pd_data, file = "pd_dataset.csv")
 
 
 #Now I can do the same for the other parties
+#Forza Italia dataset
 library(rio)
 
 fi_channel <- import("Content Details Data/fi_channel.csv")
@@ -97,3 +99,50 @@ fi_data <- as.data.frame(fi_data)
 fi_data$text[duplicated(fi_data$text)] <- NA
 
 export(fi_data, file = "fi_dataset.csv")
+
+
+
+
+
+#Fratelli d'Italia dataset
+library(rio)
+
+fdi_channel <- import("Content Details Data/fdi_channel.csv")
+
+library(dplyr)
+fdi_channel <- fdi_channel %>%
+  rename("date" = "contentDetails.videoPublishedAt") %>%
+  rename("video_id" = "contentDetails.videoId")
+
+fdi_captions <- import("Captions/fdi_captions.Rdata")
+
+divider <- function(x, n) split(x, cut(seq_along(x), n, labels = F))
+
+fdi_captions <- divider(fdi_captions, 5524)
+
+
+library(stringr)
+
+for (i in 1:5524) {
+  fdi_captions[[i]][["text"]] <- str_c(fdi_captions[[i]][["text"]], collapse = " ")
+}
+
+fdi_data <- matrix(nrow = 5524, ncol = 3, dimnames = list(c(1:5524), c("video_id", "date", "text")))
+
+fdi_data[, 1] <- fdi_channel$video_id
+
+fdi_channel$date <- as.character.Date(fdi_channel$date)
+fdi_data[, 2] <- fdi_channel$date
+
+for(i in seq_along(1:5524)){
+  fdi_data[i, 3] <- fdi_captions[[i]][["text"]]
+}
+
+fdi_data <- as.data.frame(fdi_data)
+
+fdi_data$text[duplicated(fdi_data$text)] <- NA
+
+export(fdi_data, file = "Party Datasets/fdi_dataset.csv")
+
+
+
