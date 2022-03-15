@@ -41,7 +41,7 @@ Since `Tuber`'s function to extract subtitles from YouTube videos has been recen
 
 # Methods
 
-After [preparing the data](https://github.com/DataAccess2020/YT-API/blob/main/Scripts/01_data_preparation.R) in order to have clean, tidy datasets for each political party's channel, I finally came to the content analysis.
+After [preparing the data](https://github.com/DataAccess2020/YT-API/blob/main/Scripts/01_data_preparation.R) in order to have clean, tidy datasets for each political party's channel, I finally came to the content analysis. I used the `tidytext` package to manage the captions of each channel's videos: I removed Italian stopwords and errors and had a look at the most frequent words per channel.
 
 
 
