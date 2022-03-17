@@ -117,12 +117,12 @@ save(... = m5s_captions, file = "m5s_captions.Rdata")
 
 
 
-lg_data <- import("lg_data.csv")
+lg_data <- import("Metadata/lg_data.csv")
 
 lg_captions <- vector()
 v <- vector()
 
-for (i in lg_data$lg_url[1:5000]) {
+for (i in lg_data$lg_url[1:9548]) {
   tryCatch({
     v <- get_caption(i, "it")
   }, error = function(e){})
@@ -130,7 +130,6 @@ for (i in lg_data$lg_url[1:5000]) {
   print(i)
   lg_captions <- append(lg_captions, v)
 }
-
 
 save(... = lg_captions, file = "lg_captions.Rdata")
 
