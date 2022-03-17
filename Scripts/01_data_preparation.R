@@ -146,3 +146,90 @@ export(fdi_data, file = "Party Datasets/fdi_dataset.csv")
 
 
 
+
+
+
+
+#Lega dataset
+library(rio)
+
+lg_channel <- import("Content Details Data/lg_channel.csv")
+
+library(dplyr)
+lg_channel <- lg_channel %>%
+  rename("date" = "contentDetails.videoPublishedAt") %>%
+  rename("video_id" = "contentDetails.videoId")
+
+lg_captions <- import("Captions/lg_captions.Rdata")
+
+divider <- function(x, n) split(x, cut(seq_along(x), n, labels = F))
+
+lg_captions <- divider(lg_captions, 9548)
+
+
+library(stringr)
+
+for (i in 1:9548) {
+  lg_captions[[i]][["text"]] <- str_c(lg_captions[[i]][["text"]], collapse = " ")
+}
+
+lg_data <- matrix(nrow = 9548, ncol = 3, dimnames = list(c(1:9548), c("video_id", "date", "text")))
+
+lg_data[, 1] <- lg_channel$video_id
+
+lg_channel$date <- as.character.Date(lg_channel$date)
+lg_data[, 2] <- lg_channel$date
+
+for(i in seq_along(1:9548)){
+  lg_data[i, 3] <- lg_captions[[i]][["text"]]
+}
+
+lg_data <- as.data.frame(lg_data)
+
+lg_data$text[duplicated(lg_data$text)] <- NA
+
+export(lg_data, file = "Party Datasets/lg_dataset.csv")
+
+
+
+
+
+#Movimento 5 Stelle dataset
+library(rio)
+
+m5s_channel <- import("Content Details Data/m5s_channel.csv")
+
+library(dplyr)
+m5s_channel <- m5s_channel %>%
+  rename("date" = "contentDetails.videoPublishedAt") %>%
+  rename("video_id" = "contentDetails.videoId")
+
+m5s_captions <- import("Captions/m5s_captions.Rdata")
+
+divider <- function(x, n) split(x, cut(seq_along(x), n, labels = F))
+
+m5s_captions <- divider(m5s_captions, 20000)
+
+
+library(stringr)
+
+for (i in 1:20000) {
+  m5s_captions[[i]][["text"]] <- str_c(m5s_captions[[i]][["text"]], collapse = " ")
+}
+
+m5s_data <- matrix(nrow = 20000, ncol = 3, dimnames = list(c(1:20000), c("video_id", "date", "text")))
+
+m5s_data[, 1] <- m5s_channel$video_id
+
+m5s_channel$date <- as.character.Date(m5s_channel$date)
+m5s_data[, 2] <- m5s_channel$date
+
+for(i in seq_along(1:20000)){
+  m5s_data[i, 3] <- m5s_captions[[i]][["text"]]
+}
+
+m5s_data <- as.data.frame(m5s_data)
+
+m5s_data$text[duplicated(m5s_data$text)] <- NA
+
+export(m5s_data, file = "Party Datasets/m5s_dataset.csv")
