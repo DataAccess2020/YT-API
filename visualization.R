@@ -109,3 +109,11 @@ plot_data[, 10] <- lg_prop$n
 plot_data <- as.data.frame(plot_data)
 
 save(plot_data, file = "plot_data.Rdata")
+
+
+
+plot_data <- import("plot_data.Rdata")
+
+
+
+
