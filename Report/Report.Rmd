@@ -41,8 +41,11 @@ Since `Tuber`'s function to extract subtitles from YouTube videos has been recen
 
 # Methods
 
-After [preparing the data](https://github.com/DataAccess2020/YT-API/blob/main/Scripts/01_data_preparation.R) in order to have clean, tidy datasets for each political party's channel, I finally came to the content analysis.
+After [_preparing the data_](https://github.com/DataAccess2020/YT-API/blob/main/Scripts/01_data_preparation.R) in order to have clean, tidy datasets for each political party's channel, I finally came to the analysis.
 
+For each party's channel, I split the captions in words in order to remove stopwords (like conjunctions and auxiliary verbs, but also some adverbs that I manually added to the list), I removed encoding errors (like some accent marks) and some YouTube transcription errors (like numbers being transcripted with digits instead of words). When I finally ended up with clean lexemes of interest, for each party I obtained the `count` of each word and sorted them. To a first look, it appeared that the most frequent words were common between the parties: lavoro, partito and persone, to name a few.
+
+At this point, I was ready to visualize the data. In order to look into my first hypothesis, I wanted to compare the frequency of words between parties. However, the number of videos uploaded by each party varies significantly: to make an example, the most recurrent word for Forza Italia is ***, which occurs 104 times in 60 videos, meanwhile the most recurrent word for Lega is ***, which occurs n in n videos. To make these numbers impartial and comparable, I decided to get the in-group percentage of occurrance of each word. For example, Forza Italia's *** percentage of appearance is 104/n, which is comparable to Lega's *** appearance of n/n.
 
 
 
