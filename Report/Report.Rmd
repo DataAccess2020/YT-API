@@ -1,5 +1,5 @@
 ---
-title: "YouTube communication of Italian political parties"
+title: "YouTube communication of Italian Political Parties"
 author: "Maria Ascolese"
 date: "March 11, 2022"
 output:
@@ -8,6 +8,12 @@ output:
     toc_depth: 2
     number_sections: true
     highlight: tango
+
+header-includes:
+ \usepackage{fancyhdr}
+ \pagestyle{fancy}
+ \fancyhead[LE,LO]{YouTube communication of Italian Political Parties}
+ \fancyhead[RE,RO]{Maria Ascolese - 01095A}
 ---
 
 ```{r setup, eval=FALSE, include=TRUE}
@@ -18,9 +24,7 @@ output:
 
 # Introduction
 
-
-
-# Literature review
+In this paper I use the `YouTube Data API v3` to collect data and metadata from the official YouTube channels of major Italian Parties in order to investigate content and language occurrences in YouTube videos. The goal of this short analysis would be to understand each Party's topics and language of choice, and I believe that their YouTube channels might be accurate small representations of their communicative goals, as all video content on the channels has been necessarily chosen and published by the channel owner and, therefore, intentionality must be assumed (Vesnic-Alujevic & Van Bauwel, 2014).
 
 
 
@@ -41,11 +45,7 @@ Since `Tuber`'s function to extract subtitles from YouTube videos has been recen
 
 # Methods
 
-<<<<<<< HEAD
-After [_preparing the data_](https://github.com/DataAccess2020/YT-API/blob/main/Scripts/01_data_preparation.R) in order to have clean, tidy datasets for each political party's channel, I finally came to the analysis.
-=======
-After [preparing the data](https://github.com/DataAccess2020/YT-API/blob/main/Scripts/01_data_preparation.R) in order to have clean, tidy datasets for each political party's channel, I finally came to the content analysis. I used the `tidytext` package to manage the captions of each channel's videos: I removed Italian stopwords and errors and had a look at the most frequent words per channel.
->>>>>>> 085681f8044e8738375b9b6154b0bfb45ddb5d9c
+After [preparing the data](https://github.com/DataAccess2020/YT-API/blob/main/Scripts/01_data_preparation.R) in order to have clean, tidy datasets for each political party's channel, I finally came to the analysis, for which I used the `tidytext` package.
 
 For each party's channel, I split the captions in words in order to remove stopwords (like conjunctions and auxiliary verbs, but also some adverbs that I manually added to the list), I removed encoding errors (like some accent marks) and some YouTube transcription errors (like numbers being transcripted with digits instead of words). When I finally ended up with clean lexemes of interest, for each party I obtained the `count` of each word and sorted them. To a first look, it appeared that the most frequent words were common between the parties: lavoro, partito and persone, to name a few.
 
