@@ -33,12 +33,17 @@ In this paper I use the `YouTube Data API v3` to collect data and metadata from 
 
 # Data
 
-I used the R package `Tuber` to collect YouTube videos data. `Tuber` consists of a number of functions useful to extract data from the YouTube platform via the YouTube Data API v3. I conducted the queries using each political party's ID in the `list_channel_videos` function, which resulted in obtaining metadata for each video published on every channel. The tool provided metadata for 20000 videos from [**Movimento 5 Stelle**](https://www.youtube.com/user/M5SParlamento)'s channel; 9548 videos from [**Lega Salvini Premier**](https://www.youtube.com/c/LegaSalviniPremier)'s channel; 1955 videos from [**Partito Democratico**](https://www.youtube.com/c/PartitoDemocratico)'s channel; 5555 videos from [**Fratelli d'Italia**](https://www.youtube.com/c/FratellidItaliaAN)'s channel; 67 videos from [**Forza Italia**](https://www.youtube.com/c/forzaitalia)'s channel.
+I used the R package `Tuber` to collect YouTube videos data. `Tuber` consists of a number of functions useful to extract data from the YouTube platform via the YouTube Data API v3. I conducted the queries using each political party's ID in the `list_channel_videos` function, which resulted in obtaining metadata for each video published on every channel. The tool provided metadata for:
+- 20000 videos from [**Movimento 5 Stelle**](https://www.youtube.com/user/M5SParlamento)'s channel;
+- 9548 videos from [**Lega Salvini Premier**](https://www.youtube.com/c/LegaSalviniPremier)'s channel;
+- 1955 videos from [**Partito Democratico**](https://www.youtube.com/c/PartitoDemocratico)'s channel;
+- 5524 videos from [**Fratelli d'Italia**](https://www.youtube.com/c/FratellidItaliaAN)'s channel;
+- 60 videos from [**Forza Italia**](https://www.youtube.com/c/forzaitalia)'s channel.
 
 Since `Tuber`'s function to extract subtitles from YouTube videos has been recently disabled, I used the R package `youtubecaptions` instead. The function `get_caption` gives back a number of string characters for each video, which correspond to the unique captions appearing on the screen as the video plays. However, the `get_caption` function needs URLs, which I produced with a basic YouTube video URL and video IDs.
 
 ```{r eval=FALSE, include=TRUE}
-#Example of URLs produced for the Partito Democratico's videos
+#Example of URLs produced for Fratelli d'Italia's videos
 
 fdi_url <- str_c("https://www.youtube.com/watch?v=",
                  fdi_ch$contentDetails.videoId[1:5524])
@@ -91,7 +96,10 @@ wordcounts <- wordcounts[-which(wordcounts$word == ""), ]
 
 To a first look, it appeared that the most frequent words were common between the parties: lavoro, partito and persone, to name a few.
 
-At this point, I was ready to visualize the data. In order to look into my first hypothesis, I wanted to compare the frequency of words between parties. However, the number of videos uploaded by each party varies significantly: to make an example, the most recurrent word for Forza Italia is ***, which occurs 104 times in 60 videos, meanwhile the most recurrent word for Lega is ***, which occurs n in n videos. To make these numbers impartial and comparable, I decided to get the in-group percentage of occurrance of each word. For example, Forza Italia's *** percentage of appearance is 104/n, which is comparable to Lega's *** appearance of n/n.
+At this point, I was ready to visualize the data. In order to look into my first hypothesis, I wanted to compare the frequency of words between parties. However, the number of videos uploaded by each party varies significantly: to make an example, the word **paese** occurs 63 times in Forza Italia's videos and 5794 times in Lega's videos, but it actually is the sixth most recurrent word in both channels.
+This great difference depends on the difference of content, as Forza Italia's channel only consists of 60 videos - against the 9548 videos of Lega's channel.
+
+To make these numbers impartial and comparable, I decided to get the in-group percentage of occurrence of each word. For example, Forza Italia's **paese** percentage of appearance is 63/n, which is comparable to Lega's **paese** appearance of n/n.
 
 
 
