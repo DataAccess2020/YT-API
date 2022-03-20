@@ -24,11 +24,10 @@ In this paper I use the `YouTube Data API v3` to collect data and metadata from 
 
 
 
-# Hypotheses
+# Hypothesis
 
 *H1* Parties with common ideologies also show common keywords, emotional words and syntax.
 
-*H2* Each party's keywords, emotional words and syntax change dramatically over time.
 
 
 # Data
@@ -62,7 +61,11 @@ for (i in pd_data$pd_url[1:1955]) {
 }
 ```
 
-I then joined them in single string characters, obtaining whole transcriptions for each video of the channels.
+Scraping the video captions with these for-loops was a bit tricky. When I first scraped the Partito Democratico's captions, the for-loop was *extremely* slow and it even stopped a few times - that is, because some videos did not inclued captions. Then I added `tryCatch`, but I did not specify the `e` function, as I didn't want to risk to make the for-loop even slower.
+
+The Partito Democratico's captions alone, with only 1955 videos, took 3 hours. Obviously, I got scared that the bigger channels (Lega, 9548 videos; Movimento 5 Stelle, 20000 videos) could rob me of days. So, I searched for possible reasons why my for-loop was so slow, and made a few experiments with the `Sys.time` to try and make it faster. I even considered conducting the loops in AVS, but I figured that it would not solve a thing: ultimately, the slowness depended on the function `get_caption`. I just accepted that I needed to leave the loops run for a couple of days.
+
+When I finally got the captions, I then joined them in single string characters, obtaining whole transcriptions for each video of the channels.
 
 
 
@@ -94,20 +97,27 @@ wordcounts <- wordcounts[-which(wordcounts$word == ""), ]
 ```
 
 
-At a first glance, it appeared that the most frequent words were common between the parties: **lavoro**, **partito** and **persone**, to name a few.
+At a first glance, it appeared that the most frequent words were common between the parties: **lavoro**, **paese** and **persone**, to name a few.
 
-At this point, I was ready to visualize the data. In order to look into my first hypothesis, I wanted to compare the frequency of words between parties.
+At this point, I was ready to visualize the data. In order to look into my hypothesis, I wanted to compare the frequency of words between parties. However, the number of videos uploaded by each party varies significantly: to make an example, the word **paese** occurs 63 times in Forza Italia's videos and 5794 times in Lega's videos, but it actually is the sixth most recurrent word in both channels.
+This great difference depends on the difference of content, as Forza Italia's channel only consists of 60 videos - against the 9548 videos of Lega's channel.
 
-```{r}
+To make these numbers impartial and comparable, I decided to get the in-group relative frequency of occurrence of each word. For example, Forza Italia's **paese** percentage of appearance is **63/4656 = 0.51%**, which is comparable to Lega's **paese** appearance of **5794/68604 = 0.37%**.
+With these comparable results, I finally visualized the data.
 
-```
+![](Frequent Words.png)
 
 
 # Results
 
+By comparing absolute and relative frequency of the words in each party's channel, I did not find any interesting similarity or significant difference. Actually, after removing stopwords, the most frequent words for each party were those of the very party's name (e.g., "lega" was the most recurring word for Lega, "forza" and "italia" were the most recurring words for Forza Italia, etc). After I removed these words too, as they weren't interesting to me, the parties' words turned out to be all very similar.
 
 
 # Conclusion
+
+Ultimately, I could not really prove or reject my hypothesis. I believe that with more time and a deeper knowledge of text and content analysis, interesting phenomena could have been found in my data; I'm not sure if my hypothesis would have been necessarily proven to be true, but I feel that a lexical pattern does exist in the channels, at least on an in-group level. Perhaps, the fact that this research focused on a between-groups comparison was a bit of a stretch.
+
+In the end, I can say that working with Italian political parties language is interesting and represents an exciting field to work on. From a technical perspective, working on this project I learned to deal with many new tools. Above all, I must name for-loops: only one month ago, they seemed the most advanced-level, unreachable tool to master, but now I can tell I finally grasped the concept and learned to write them on my own (at least, simple for-loops as the ones in my scraping RScript). Also, scraping was sort of exciting to me. A couple of times, I even needed to obtain some information from raw source pages: to me, it was fun to work on the raw content of familiar sights as YouTube.
 
 
 
