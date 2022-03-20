@@ -24,11 +24,10 @@ In this paper I use the `YouTube Data API v3` to collect data and metadata from 
 
 
 
-# Hypotheses
+# Hypothesis
 
 *H1* Parties with common ideologies also show common keywords, emotional words and syntax.
 
-*H2* Each party's keywords, emotional words and syntax change dramatically over time.
 
 
 # Data
@@ -94,12 +93,16 @@ wordcounts <- wordcounts[-which(wordcounts$word == ""), ]
 ```
 
 
-At a first glance, it appeared that the most frequent words were common between the parties: **lavoro**, **partito** and **persone**, to name a few.
+At a first glance, it appeared that the most frequent words were common between the parties: **lavoro**, **paese** and **persone**, to name a few.
 
-At this point, I was ready to visualize the data. In order to look into my first hypothesis, I wanted to compare the frequency of words between parties.
+At this point, I was ready to visualize the data. In order to look into my hypothesis, I wanted to compare the frequency of words between parties. However, the number of videos uploaded by each party varies significantly: to make an example, the word **paese** occurs 63 times in Forza Italia's videos and 5794 times in Lega's videos, but it actually is the sixth most recurrent word in both channels.
+This great difference depends on the difference of content, as Forza Italia's channel only consists of 60 videos - against the 9548 videos of Lega's channel.
+
+To make these numbers impartial and comparable, I decided to get the in-group relative frequency of occurrence of each word. For example, Forza Italia's **paese** percentage of appearance is **63/4656 = 0.51%**, which is comparable to Lega's **paese** appearance of **5794/68604 = 0.37%**.
+With these comparable results, I finally visualized the data.
 
 ```{r}
-
+print()
 ```
 
 
