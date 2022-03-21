@@ -3,7 +3,7 @@ title: "YouTube communication of Italian Political Parties"
 author: "Maria Ascolese"
 date: "March 11, 2022"
 output:
-  pdf_document:
+  html_document:
     toc: true
     toc_depth: 2
     number_sections: true
