@@ -34,6 +34,7 @@ The goal of this short analysis would be to compare Parties’ topics and langua
 
 # Data
 
+
 ## Channel data
 
 I used the R package `Tuber` to collect YouTube videos data, as it consists of a number of functions useful to extract data from the YouTube platform via the YouTube Data API v3. I conducted the queries using each political party's ID in the `list_channel_videos` function, which resulted in obtaining metadata for each video published on every channel. The tool provided metadata for:
